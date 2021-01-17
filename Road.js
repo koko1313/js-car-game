@@ -1,3 +1,5 @@
+import { gameSpeed } from "./Constants.js";
+
 const Road = function (ctx, playground) {
     this.y = 0;
 
@@ -5,7 +7,7 @@ const Road = function (ctx, playground) {
         if (this.y > playground.height) {
             this.y = 0;
         }
-        this.y += 3;
+        this.y += gameSpeed;
     }
 
     this.draw = () => {

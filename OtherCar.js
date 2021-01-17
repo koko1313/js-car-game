@@ -1,4 +1,4 @@
-import { carDimentions } from "./Constants.js";
+import { carDimentions, gameSpeed } from "./Constants.js";
 
 const OtherCar = function (ctx, playground, imgSrc) {
     this.image = new Image(carDimentions.width, carDimentions.height);
@@ -12,7 +12,7 @@ const OtherCar = function (ctx, playground, imgSrc) {
             this.x = Math.floor(Math.random() * playground.width - carDimentions.width);
             this.y = -carDimentions.height;
         }
-        this.y += 3;
+        this.y += gameSpeed;
     }
 
     this.draw = () => {

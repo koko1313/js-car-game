@@ -15,12 +15,12 @@ const PlayerCar = function (ctx, playground) {
         );
     }
 
-    this.moveRight = () => {
-        this.x += 30;
+    this.moveRight = (step) => {
+        this.x += step;
     }
 
-    this.moveLeft = () => {
-        this.x -= 30;
+    this.moveLeft = (step) => {
+        this.x -= step;
     }
 }
 

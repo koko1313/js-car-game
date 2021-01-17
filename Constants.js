@@ -3,4 +3,6 @@ const carDimentions = {
     height: 101
 }
 
-export { carDimentions };
+const gameSpeed = 1;
+
+export { carDimentions, gameSpeed };

@@ -14,10 +14,10 @@ const car3 = new OtherCar(ctx, playground, "images/ambulance.png");
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowRight":
-            playerCar.moveRight();
+            playerCar.moveRight(30);
             break;
         case "ArrowLeft":
-            playerCar.moveLeft();
+            playerCar.moveLeft(30);
             break;
     }
 });
@@ -29,4 +29,4 @@ setInterval(() => {
     car1.draw();
     car2.draw();
     car3.draw();
-}, 10);
+}, 1);
