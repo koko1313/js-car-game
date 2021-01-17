@@ -11,7 +11,7 @@ const car1 = new OtherCar(ctx, playground, "images/carGrey.png");
 const car2 = new OtherCar(ctx, playground, "images/carYellow.png");
 const car3 = new OtherCar(ctx, playground, "images/ambulance.png");
 
-document.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowRight":
             playerCar.moveRight(30);
@@ -19,6 +19,15 @@ document.addEventListener("keydown", (e) => {
         case "ArrowLeft":
             playerCar.moveLeft(30);
             break;
+    }
+});
+
+window.addEventListener("deviceorientation", (e) => {
+    if (e.gamma > 10) {
+        playerCar.moveRight(10);
+    }
+    else if (e.gamma < -10) {
+        playerCar.moveLeft(10);
     }
 });
 
