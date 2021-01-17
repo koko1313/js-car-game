@@ -5,6 +5,10 @@ import Road from "./Road.js";
 const playground = document.getElementById("playground");
 const ctx = playground.getContext("2d");
 
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    playground.width = window.innerWidth;
+}
+
 const road = new Road(ctx, playground);
 const playerCar = new PlayerCar(ctx, playground);
 const car1 = new OtherCar(ctx, playground, "images/carGrey.png");
