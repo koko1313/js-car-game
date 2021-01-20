@@ -22,11 +22,15 @@ const PlayerCar = function () {
     }
 
     this.moveRight = () => {
-        this.x += 30;
+        if ((this.x + carDimentions.width) < playground.width) {
+            this.x += 30;
+        }
     }
 
     this.moveLeft = () => {
-        this.x -= 30;
+        if (this.x > 0) {
+            this.x -= 30;
+        }
     }
 }
 
@@ -61,12 +65,12 @@ const OtherCar = function (imgSrc) {
     this.image = new Image(carDimentions.width, carDimentions.height);
     this.image.src = imgSrc;
 
-    this.x = Math.floor(Math.random() * playground.width - carDimentions.width);
+    this.x = Math.floor(Math.random() * (playground.width - carDimentions.width));
     this.y = -carDimentions.height;
 
     this.move = () => {
         if (this.y > playground.height) {
-            this.x = Math.floor(Math.random() * playground.width - carDimentions.width);
+            this.x = Math.floor(Math.random() * (playground.width - carDimentions.width));
             this.y = -carDimentions.height;
         }
         this.y += 3;
