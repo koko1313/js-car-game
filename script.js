@@ -21,15 +21,15 @@ const PlayerCar = function () {
         );
     }
 
-    this.moveRight = () => {
+    this.moveRight = (step) => {
         if ((this.x + carDimentions.width) < playground.width) {
-            this.x += 30;
+            this.x += step;
         }
     }
 
-    this.moveLeft = () => {
+    this.moveLeft = (step) => {
         if (this.x > 0) {
-            this.x -= 30;
+            this.x -= step;
         }
     }
 }
@@ -41,7 +41,7 @@ const Road = function () {
         if (this.y > playground.height) {
             this.y = 0;
         }
-        this.y += 3;
+        this.y += 1;
     }
 
     this.draw = () => {
@@ -73,7 +73,7 @@ const EnemyCar = function (imgSrc, delay = 0) {
             this.x = Math.floor(Math.random() * (playground.width - carDimentions.width));
             this.y = -carDimentions.height;
         }
-        this.y += 3;
+        this.y += 1;
     }
 
     this.draw = () => {
@@ -92,14 +92,23 @@ const car1 = new EnemyCar("images/carGrey.png");
 const car2 = new EnemyCar("images/carYellow.png", 150);
 const car3 = new EnemyCar("images/ambulance.png", 300);
 
-document.addEventListener("keydown", (e) => {
+window.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowRight":
-            playerCar.moveRight();
+            playerCar.moveRight(30);
             break;
         case "ArrowLeft":
-            playerCar.moveLeft();
+            playerCar.moveLeft(30);
             break;
+    }
+});
+
+window.addEventListener("deviceorientation", (e) => {
+    if (e.gamma < -10) {
+        playerCar.moveLeft(10);
+    }
+    else if (e.gamma > 10) {
+        playerCar.moveRight(10);
     }
 });
 
@@ -110,4 +119,4 @@ setInterval(() => {
     car1.draw();
     car2.draw();
     car3.draw();
-}, 10);
+}, 1);
