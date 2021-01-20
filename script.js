@@ -47,15 +47,26 @@ const Road = function () {
     this.draw = () => {
         this.iLikeToMoveItMoveIt();
         ctx.beginPath();
-        ctx.rect(playground.width / 2 - 10, this.y - 600, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y - 450, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y - 300, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y - 150, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y + 150, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y + 300, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y + 450, 20, 100);
-        ctx.rect(playground.width / 2 - 10, this.y + 600, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y - 600, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y - 450, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y - 300, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y - 150, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y + 150, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y + 300, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y + 450, 20, 100);
+        ctx.rect(playground.width / 3 - 10, this.y + 600, 20, 100);
+
+        ctx.rect(playground.width * 2 / 3 - 10, this.y - 600, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y - 450, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y - 300, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y - 150, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y + 150, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y + 300, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y + 450, 20, 100);
+        ctx.rect(playground.width * 2 / 3 - 10, this.y + 600, 20, 100);
+
         ctx.fillStyle = "white";
         ctx.fill();
     }
