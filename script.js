@@ -61,12 +61,12 @@ const Road = function () {
     }
 }
 
-const OtherCar = function (imgSrc) {
+const OtherCar = function (imgSrc, delay = 0) {
     this.image = new Image(carDimentions.width, carDimentions.height);
     this.image.src = imgSrc;
 
     this.x = Math.floor(Math.random() * (playground.width - carDimentions.width));
-    this.y = -carDimentions.height;
+    this.y = -carDimentions.height - delay;
 
     this.move = () => {
         if (this.y > playground.height) {
@@ -89,8 +89,8 @@ const OtherCar = function (imgSrc) {
 const road = new Road();
 const playerCar = new PlayerCar();
 const car1 = new OtherCar("images/carGrey.png");
-const car2 = new OtherCar("images/carYellow.png");
-const car3 = new OtherCar("images/ambulance.png");
+const car2 = new OtherCar("images/carYellow.png", 150);
+const car3 = new OtherCar("images/ambulance.png", 300);
 
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
