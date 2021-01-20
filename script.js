@@ -100,8 +100,9 @@ const EnemyCar = function (imgSrc, delay = 0) {
 const road = new Road();
 const playerCar = new PlayerCar();
 const car1 = new EnemyCar("images/carGrey.png");
-const car2 = new EnemyCar("images/carYellow.png", 150);
-const car3 = new EnemyCar("images/ambulance.png", 300);
+const car2 = new EnemyCar("images/carYellow.png", 180);
+const car3 = new EnemyCar("images/ambulance.png", 360);
+const car4 = new EnemyCar("images/carGreen.png", 540);
 
 window.addEventListener("keydown", (e) => {
     switch (e.key) {
@@ -116,10 +117,10 @@ window.addEventListener("keydown", (e) => {
 
 window.addEventListener("deviceorientation", (e) => {
     if (e.gamma < -10) {
-        playerCar.moveLeft(10);
+        playerCar.moveLeft(7);
     }
     else if (e.gamma > 10) {
-        playerCar.moveRight(10);
+        playerCar.moveRight(7);
     }
 });
 
@@ -130,4 +131,5 @@ setInterval(() => {
     car1.draw();
     car2.draw();
     car3.draw();
+    car4.draw();
 }, 1);
