@@ -2,10 +2,15 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
-    text-align: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
 }
 
 #playground {
+    
     border: 1px solid black;
     background-color: #333333;
 }
