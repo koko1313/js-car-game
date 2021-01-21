@@ -6,6 +6,62 @@ const carDimentions = {
     height: 101
 }
 
+const calculateA = (x, y) => {
+    return {
+        x: x,
+        y: y + carDimentions.height
+    }
+}
+
+const calculateB = (x, y) => {
+    return {
+        x: x + carDimentions.width,
+        y: y + carDimentions.height
+    }
+}
+
+const calculateC = (x, y) => {
+    return {
+        x: x + carDimentions.width,
+        y: y
+    }
+}
+
+const calculateD = (x, y) => {
+    return {
+        x: x,
+        y: y
+    }
+}
+
+const detectCollision = (playerCar, enemyCars) => {
+    for (const enemyCar of enemyCars) {
+        if (playerCar.a.x > enemyCar.a.x && playerCar.a.x < enemyCar.b.x
+            && playerCar.a.y > enemyCar.d.y && playerCar.a.y < enemyCar.a.y
+        ) {
+            return true; // collision A
+        }
+
+        if (playerCar.b.x > enemyCar.a.x && playerCar.b.x < enemyCar.b.x
+            && playerCar.b.y > enemyCar.d.y && playerCar.b.y < enemyCar.a.y
+        ) {
+            return true; // collision B
+        }
+
+        if (playerCar.c.x > enemyCar.a.x && playerCar.c.x < enemyCar.b.x
+            && playerCar.c.y > enemyCar.d.y && playerCar.c.y < enemyCar.a.y
+        ) {
+            return true; // collision C
+        }
+
+        if (playerCar.d.x > enemyCar.a.x && playerCar.d.x < enemyCar.b.x
+            && playerCar.d.y > enemyCar.d.y && playerCar.d.y < enemyCar.a.y
+        ) {
+            return true; // collision C
+        }
+    }
+}
+
 const PlayerCar = function () {
     this.image = new Image(carDimentions.width, carDimentions.height);
     this.image.src = "images/carRed.png";
@@ -13,12 +69,25 @@ const PlayerCar = function () {
     this.x = playground.width / 2 - carDimentions.width / 2;
     this.y = playground.height - carDimentions.height - 20;
 
+    this.a = null;
+    this.b = null;
+    this.c = null;
+    this.d = null;
+
+    this.calculateABCD = () => {
+        this.a = calculateA(this.x, this.y);
+        this.b = calculateB(this.x, this.y);
+        this.c = calculateC(this.x, this.y);
+        this.d = calculateD(this.x, this.y);
+    }
+
     this.draw = () => {
         ctx.drawImage(
             this.image, // картинката
             this.x,
             this.y
         );
+        this.calculateABCD();
     }
 
     this.moveRight = (step) => {
@@ -79,6 +148,18 @@ const EnemyCar = function (imgSrc, delay = 0) {
     this.x = Math.floor(Math.random() * (playground.width - carDimentions.width));
     this.y = -carDimentions.height - delay;
 
+    this.a = null;
+    this.b = null;
+    this.c = null;
+    this.d = null;
+
+    this.calculateABCD = () => {
+        this.a = calculateA(this.x, this.y);
+        this.b = calculateB(this.x, this.y);
+        this.c = calculateC(this.x, this.y);
+        this.d = calculateD(this.x, this.y);
+    }
+
     this.move = () => {
         if (this.y > playground.height) {
             this.x = Math.floor(Math.random() * (playground.width - carDimentions.width));
@@ -93,16 +174,19 @@ const EnemyCar = function (imgSrc, delay = 0) {
             this.image, // картинката
             this.x,
             this.y
-        )
+        );
+        this.calculateABCD();
     }
 }
 
 const road = new Road();
 const playerCar = new PlayerCar();
-const car1 = new EnemyCar("images/carGrey.png");
-const car2 = new EnemyCar("images/carYellow.png", 180);
-const car3 = new EnemyCar("images/ambulance.png", 360);
-const car4 = new EnemyCar("images/carGreen.png", 540);
+
+const enemyCars = [];
+enemyCars.push(new EnemyCar("images/carGrey.png"));
+enemyCars.push(new EnemyCar("images/carYellow.png", 180));
+enemyCars.push(new EnemyCar("images/ambulance.png", 360));
+enemyCars.push(new EnemyCar("images/carGreen.png", 540));
 
 window.addEventListener("keydown", (e) => {
     switch (e.key) {
@@ -128,8 +212,10 @@ setInterval(() => {
     ctx.clearRect(0, 0, playground.width, playground.height);
     road.draw();
     playerCar.draw();
-    car1.draw();
-    car2.draw();
-    car3.draw();
-    car4.draw();
+    enemyCars.forEach(car => {
+        car.draw();
+    });
+    if (detectCollision(playerCar, enemyCars)) {
+        console.log("Удар");
+    }
 }, 1);
