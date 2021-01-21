@@ -57,7 +57,7 @@ const detectCollision = (playerCar, enemyCars) => {
         if (playerCar.d.x > enemyCar.a.x && playerCar.d.x < enemyCar.b.x
             && playerCar.d.y > enemyCar.d.y && playerCar.d.y < enemyCar.a.y
         ) {
-            return true; // collision C
+            return true; // collision D
         }
     }
 }
