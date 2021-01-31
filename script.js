@@ -4,6 +4,7 @@ const pointsLabel = document.getElementById("points");
 const ctx = playground.getContext("2d");
 
 let continueGame = true;
+let notifiedByVibration = false;
 let points = 0;
 
 const carDimentions = {
@@ -202,6 +203,8 @@ enemyCars.push(new EnemyCar("images/carGreen.png", 540));
 
 const restartGame = () => {
     continueGame = true;
+    points = 0;
+    notifiedByVibration = false;
     enemyCars = [];
     enemyCars.push(new EnemyCar("images/carGrey.png"));
     enemyCars.push(new EnemyCar("images/carYellow.png", 180));
@@ -250,5 +253,9 @@ setInterval(() => {
         pointsLabel.innerText = points;
         endScreen.style.display = "block";
         playground.style.display = "none";
+        if (!notifiedByVibration) {
+            window.navigator.vibrate(200);
+            notifiedByVibration = true;
+        }
     }
 }, 1);
