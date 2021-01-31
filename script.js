@@ -1,8 +1,10 @@
 const playground = document.getElementById("playground");
-const restartGameButton = document.getElementById("restartGameButton");
+const endScreen = document.getElementById("endScreen");
+const pointsLabel = document.getElementById("points");
 const ctx = playground.getContext("2d");
 
 let continueGame = true;
+let points = 0;
 
 const carDimentions = {
     width: 50,
@@ -182,6 +184,14 @@ const EnemyCar = function (imgSrc, delay = 0) {
     }
 }
 
+const drawPoints = () => {
+    ctx.font = "30px serif";
+    points++;
+    ctx.strokeStyle = "black";
+    ctx.strokeText(`Points: ${points}`, 20, 40);
+    ctx.fillText(`Points: ${points}`, 20, 40);
+}
+
 const road = new Road();
 const playerCar = new PlayerCar();
 let enemyCars = [];
@@ -197,7 +207,7 @@ const restartGame = () => {
     enemyCars.push(new EnemyCar("images/carYellow.png", 180));
     enemyCars.push(new EnemyCar("images/ambulance.png", 360));
     enemyCars.push(new EnemyCar("images/carGreen.png", 540));
-    restartGameButton.style.display = "none";
+    endScreen.style.display = "none";
     playground.style.display = "block";
 }
 
@@ -231,11 +241,14 @@ setInterval(() => {
             enemyCar.draw();
         });
 
+        drawPoints();
+
         if (detectCollision(playerCar, enemyCars)) {
             continueGame = false;
         }
     } else {
-        restartGameButton.style.display = "block";
+        pointsLabel.innerText = points;
+        endScreen.style.display = "block";
         playground.style.display = "none";
     }
 }, 1);

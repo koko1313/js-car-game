@@ -4,6 +4,7 @@ body {
     overflow: hidden;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #d9d9d9;
@@ -14,6 +15,17 @@ body {
     background-color: #333333;
 }
 
-#restartGameButton {
+#endScreen {
     display: none;
+    text-align: center;
+}
+
+#endScreenPoints {
+    font-size: 48pt;
+}
+
+#restartGameButton {
+    font-size: 20pt;
+    padding: 20px;
+    border-radius: 20px;
 }
